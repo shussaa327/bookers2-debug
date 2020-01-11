@@ -5,6 +5,7 @@ class BooksController < ApplicationController
   end
 
   def index
+    @book = Book.new
   	@books = Book.all #一覧表示するためにBookモデルの情報を全てくださいのall
   end
 
@@ -42,7 +43,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-  	params.require(:book).permit(:title)
+  	params.require(:book).permit(:title, :body)
   end
 
 end
