@@ -63,6 +63,8 @@ group :test do
   gem 'faker' #ランダム値の生成
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  gem "selenium-webdriver"
+  gem "webdrivers"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
