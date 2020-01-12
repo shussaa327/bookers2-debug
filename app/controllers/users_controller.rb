@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-	before_action :baria_user, only: [:update]
+	before_action :baria_user, only: [:update,:edit]
 
   def show
   	@user = User.find(params[:id])
@@ -22,7 +22,8 @@ class UsersController < ApplicationController
   	if @user.update(user_params)
   		redirect_to users_path(@user), notice: "successfully updated user!"
   	else
-  		render "show"
+      @book = Book.new
+  		render "edit"
   	end
   end
 
