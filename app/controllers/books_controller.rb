@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :baria_book, only: [:create,:update,:destroy,:edit]
+  before_action :baria_book, {only: [:edit,:update,:destroy]}
   def show
   	@book = Book.find(params[:id])
   end
@@ -43,16 +43,17 @@ class BooksController < ApplicationController
   	redirect_to books_path, notice: "successfully delete book!"
   end
 
+  def baria_book
+    @book = Book.find(params[:id])
+    unless @book.user_id. == current_user.id
+      redirect_to books_path
+    end
+   end
+
   private
 
   def book_params
   	params.require(:book).permit(:title, :body)
   end
-
-  def baria_book
-    unless params[:id].to_i == current_user.id
-      redirect_to user_path(current_user)
-    end
-   end
 
 end
